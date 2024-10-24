@@ -296,7 +296,7 @@ export default function Portfolio() {
               className="bg-gray-700 hover:bg-blue-500 text-white hover:text-white transition-colors"
             >
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/NishchintDhawan"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -310,22 +310,12 @@ export default function Portfolio() {
               className="bg-gray-700 hover:bg-blue-500 text-white hover:text-white transition-colors"
             >
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/nishchint-dhawan-a5b07a159/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Linkedin />
                 <span className="sr-only">LinkedIn</span>
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-gray-700 hover:bg-blue-500 text-white hover:text-white transition-colors"
-            >
-              <a href="mailto:nishchint34@gmail.com">
-                <Mail />
-                <span className="sr-only">Email</span>
               </a>
             </Button>
           </div>

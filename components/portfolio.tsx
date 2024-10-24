@@ -15,7 +15,6 @@ import {
   MapPin,
   Folder,
   GraduationCap,
-  Phone,
   ExternalLink,
 } from "lucide-react";
 import { Inter } from "next/font/google";

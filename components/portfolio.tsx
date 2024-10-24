@@ -1,5 +1,5 @@
 "use client";
-/* eslint react/no-unescaped-entities: 0 */  // --> OFF
+/* eslint react/no-unescaped-entities: 0 */ // --> OFF
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -7,17 +7,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+
 import {
   Github,
   Linkedin,
   Mail,
-  ChevronDown,
   Code,
   Briefcase,
   MapPin,
   Folder,
   GraduationCap,
   ExternalLink,
+  Menu,
+  X,
 } from "lucide-react";
 import { Inter } from "next/font/google";
 import {
@@ -43,6 +45,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("about");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,17 +82,17 @@ export default function Portfolio() {
     { name: "React", level: 90, icon: <FaReact2 className="text-blue-400" /> },
     {
       name: "Python",
-      level: 60,
+      level: 85,
       icon: <FaPython className="text-green-400" />,
     },
     {
       name: "JavaScript/TypeScript",
-      level: 80,
+      level: 90,
       icon: <FaJs className="text-yellow-400" />,
     },
     { name: "C", level: 70, icon: <FaCode className="text-blue-300" /> },
-    { name: "Java", level: 90, icon: <FaJava className="text-red-400" /> },
-    { name: "PHP", level: 60, icon: <FaPhp className="text-purple-400" /> },
+    { name: "Java", level: 70, icon: <FaJava className="text-red-400" /> },
+    { name: "PHP", level: 80, icon: <FaPhp className="text-purple-400" /> },
     {
       name: "SQL/PostgreSQL",
       level: 80,
@@ -240,41 +243,85 @@ export default function Portfolio() {
 
   return (
     <div
-      className={`min-h-screen bg-gray-900 text-gray-100 ${inter.className}`}
+      className={`relative min-h-screen bg-gray-900 text-gray-100 ${inter.className}`}
     >
+      {/* Mobile-friendly navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-90 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Nishchint Dhawan</h1>
-          <div className="flex space-x-4">
-            {[
-              "about",
-              "skills",
-              "whatido",
-              "education",
-              "experience",
-              "projects",
-              "contact",
-            ].map((section) => (
-              <button
-                key={section}
-                className={`capitalize ${
-                  activeSection === section ? "text-blue-400" : "text-gray-400"
-                } hover:text-blue-300 transition-colors`}
-                onClick={() => scrollToSection(section)}
-              >
-                {section === "whatido" ? "What I Do" : section}
-              </button>
-            ))}
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            <h1 className="text-xl md:text-2xl font-bold">Nishchint Dhawan</h1>
+
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+
+            {/* Desktop navigation */}
+            <div className="hidden md:flex space-x-6 whitespace-nowrap">
+              {[
+                "about",
+                "skills",
+                "whatido",
+                "education",
+                "experience",
+                "projects",
+                "contact",
+              ].map((section) => (
+                <button
+                  key={section}
+                  className={`capitalize ${
+                    activeSection === section
+                      ? "text-blue-400"
+                      : "text-gray-400"
+                  } hover:text-blue-300 transition-colors text-sm lg:text-base`}
+                  onClick={() => scrollToSection(section)}
+                >
+                  {section === "whatido" ? "What I Do" : section}
+                </button>
+              ))}
+            </div>
           </div>
+
+          {/* Mobile menu */}
+          {isMenuOpen && (
+            <div className="md:hidden mt-4 pb-4">
+              <div className="flex flex-col space-y-4">
+                {[
+                  "about",
+                  "skills",
+                  "whatido",
+                  "education",
+                  "experience",
+                  "projects",
+                  "contact",
+                ].map((section) => (
+                  <button
+                    key={section}
+                    className={`capitalize ${
+                      activeSection === section
+                        ? "text-blue-400"
+                        : "text-gray-400"
+                    } hover:text-blue-300 transition-colors text-left`}
+                    onClick={() => scrollToSection(section)}
+                  >
+                    {section === "whatido" ? "What I Do" : section}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
-
       <main className="container mx-auto px-4 pt-24">
+        {/* Hero Section */}
         <section
           id="about"
-          className="min-h-screen flex flex-col justify-center items-center text-center space-y-8"
+          className="min-h-screen flex flex-col justify-center items-center text-center space-y-8 px-4"
         >
-          <div className="relative w-48 h-48 rounded-full overflow-hidden mb-4 ring-4 ring-blue-500 ring-opacity-50">
+          <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden mb-4 ring-4 ring-blue-500 ring-opacity-50">
             <Image
               src={`https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile%20Medium-vB255DdHWQof0oCG9Y82IiTmvSvZ8q.png`}
               alt="Nishchint Dhawan"
@@ -283,10 +330,10 @@ export default function Portfolio() {
               objectPosition="center 30%"
             />
           </div>
-          <h2 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
             Hello, I'm Nishchint Dhawan
           </h2>
-          <p className="text-2xl text-gray-300 max-w-2xl">
+          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl">
             <AnimatedText texts={animatedTexts} className="text-blue-400" />
           </p>
           <div className="flex space-x-4">
@@ -319,14 +366,6 @@ export default function Portfolio() {
               </a>
             </Button>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => scrollToSection("skills")}
-            className="animate-bounce"
-          >
-            <ChevronDown className="h-8 w-8" />
-          </Button>
         </section>
 
         <section id="education" className="py-16">
@@ -353,35 +392,49 @@ export default function Portfolio() {
         </section>
 
         <section id="skills" className="py-16">
-          <h2 className="text-3xl font-bold mb-12 flex items-center">
-            <span className="w-12 h-1 bg-blue-500 mr-4"></span>
+          <h2 className="text-2xl md:text-3xl font-bold mb-12 flex items-center">
+            <span className="w-8 md:w-12 h-1 bg-blue-500 mr-4"></span>
             <Code className="mr-2" />
             Skills
           </h2>
-          <div className="grid gap-8 max-w-2xl mx-auto">
+          <div className="grid gap-8 max-w-2xl mx-auto px-4">
             {skills.map((skill, index) => (
-              <div key={index} className="flex items-center">
-                <div className="w-48 text-right mr-4 flex items-center justify-end">
+              <div
+                key={index}
+                className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0"
+              >
+                {/* Skill name and icon */}
+                <div className="min-w-[120px] md:w-48 text-left md:text-right md:mr-4 flex items-center md:justify-end">
                   {skill.icon}
-                  <span className="text-gray-300 font-medium break-words ml-2">
+                  <span className="text-gray-300 font-medium ml-2 text-sm md:text-base">
                     {skill.name}
                   </span>
                 </div>
-                <div className="flex-grow">
-                  <Progress value={skill.level} className="h-3 bg-gray-700" />
+
+                {/* Progress bar and percentage container */}
+                <div className="flex-1 flex items-center space-x-3">
+                  <div className="flex-grow">
+                    <Progress
+                      value={skill.level}
+                      className="h-2 md:h-3 bg-gray-700"
+                    />
+                  </div>
+                  <div className="min-w-[40px] text-right">
+                    <span className="text-gray-300 font-medium text-sm md:text-base">
+                      {skill.level}%
+                    </span>
+                  </div>
                 </div>
-                <span className="ml-4 w-12 text-left text-gray-300 font-medium">
-                  {skill.level}%
-                </span>
               </div>
             ))}
           </div>
         </section>
 
+        {/* What I Do Section */}
         <section id="whatido" className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12 flex items-center">
-              <span className="w-12 h-1 bg-blue-500 mr-4"></span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-12 flex items-center">
+              <span className="w-8 md:w-12 h-1 bg-blue-500 mr-4"></span>
               What I Do
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -451,34 +504,37 @@ export default function Portfolio() {
         </section>
 
         <section id="projects" className="py-16">
-          <h2 className="text-3xl font-bold mb-8 flex items-center">
-            <span className="w-12 h-1 bg-blue-500 mr-4"></span>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center">
+            <span className="w-8 md:w-12 h-1 bg-blue-500 mr-4"></span>
             <Folder className="mr-2" />
             Projects
           </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
               <Card
                 key={index}
                 className="bg-gray-800 text-gray-100 shadow-lg backdrop-blur-sm border-0 transition-all duration-300 hover:bg-gray-700 hover:scale-105"
               >
                 <CardHeader>
-                <CardTitle className="flex justify-between items-start">
-                  <div className="flex items-center">
-                    <h4 className="text-xl font-semibold text-blue-400">{project.name}</h4>
-                      {project.link && project.name == "Froogle" && (
-                        <a 
-                          href={project.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
+                  <CardTitle className="flex justify-between items-start">
+                    <div className="flex items-center">
+                      <h4 className="text-xl font-semibold text-blue-400">
+                        {project.name}
+                      </h4>
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="ml-2 text-gray-400 hover:text-blue-400 transition-colors"
-                          aria-label={`Visit ${project.name} project`}
                         >
                           <ExternalLink size={16} />
                         </a>
                       )}
                     </div>
-                    <span className="text-sm text-gray-400">{project.date}</span>
+                    <span className="text-sm text-gray-400">
+                      {project.date}
+                    </span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -502,16 +558,17 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="contact" className="py-16 bg-gray-900 text-white">
-          <h2 className="text-3xl font-bold mb-8 flex items-center">
-            <span className="w-12 h-1 bg-blue-500 mr-4"></span>
+        {/* Contact Section */}
+        <section id="contact" className="py-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center">
+            <span className="w-8 md:w-12 h-1 bg-blue-500 mr-4"></span>
             Contact
           </h2>
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row gap-12">
-              <div className="md:w-1/2">
-                <h2 className="text-4xl font-bold mb-6">
-                  Interested in working together? Let's chat 
+              <div className="w-full md:w-1/2">
+                <h2 className="text-xl md:text-4xl font-bold mb-6">
+                  Interested in working together? Let's chat
                 </h2>
                 <p className="mb-8 text-gray-300">
                   Actively looking for full-time positions. Also available for
@@ -538,7 +595,7 @@ export default function Portfolio() {
         </section>
       </main>
 
-      <footer className="bg-gray-800 mt-16">
+      <footer className="bg-gray-900 mt-16">
         <div className="container mx-auto px-4 py-8 text-center text-gray-400">
           <p>&copy; 2023 Nishchint Dhawan. All rights reserved.</p>
         </div>

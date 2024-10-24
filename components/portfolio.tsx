@@ -1,4 +1,6 @@
 "use client";
+/* eslint react/no-unescaped-entities: 0 */  // --> OFF
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";

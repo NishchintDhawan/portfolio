@@ -20,6 +20,7 @@ import {
   ExternalLink,
   Menu,
   X,
+  Download,
 } from "lucide-react";
 import { Inter } from "next/font/google";
 import {
@@ -110,25 +111,25 @@ export default function Portfolio() {
       icon: <FaReact className="w-12 h-12 text-blue-400" />,
       title: "Front-end",
       description:
-        "I have experience building dynamic web and mobile apps using React, React Native, and TypeScript. My projects, like a ride-sharing app, focus on responsive UIs, state management (Redux, Context API), and performance optimization with Next.js for seamless experiences.",
+        "Experienced in building dynamic web and mobile apps using React, React Native, and TypeScript. My projects, like a ride-sharing and food distribution apps, focus on responsive UIs, state management (Redux, Context API), and performance optimization with Next.js for seamless experiences.",
     },
     {
       icon: <FaServer className="w-12 h-12 text-blue-400" />,
       title: "Backend & API",
       description:
-        "Specialized in building robust backend systems with Node.js, Django, and Express.js. Designed RESTful and GraphQL APIs for projects like a cryptocurrency platform, optimized data storage with PostgreSQL and MongoDB, and leveraged Docker for containerization, ensuring scalability and security.",
+        "Specialized in building robust backend systems with Nest.js, Flask, and Express.js. Designed RESTful APIs for projects like a cryptocurrency platform, optimized data storage with PostgreSQL and MongoDB, and leveraged Docker for containerization, ensuring scalability and security.",
     },
     {
       icon: <FaCloud className="w-12 h-12 text-blue-400" />,
       title: "Cloud & DevOps",
       description:
-        "Deployed and maintained applications on AWS and Azure, utilizing RDS, S3, and Lambda for serverless architectures. Set up CI/CD pipelines with GitHub Actions and Jenkins in projects like the Ryden app, and utilized Docker, Kubernetes, and Terraform to streamline cloud provisioning and scalability.",
+        "Deployed and maintained applications on AWS and Azure, utilizing RDS, S3, and Lambda for serverless architectures. Set up CI/CD pipelines with GitHub Actions in projects like the Ryden app, and utilized Docker to streamline cloud provisioning and scalability.",
     },
     {
       icon: <FaCode className="w-12 h-12 text-blue-400" />,
       title: "System Design & Testing",
       description:
-        "Designed scalable, modular systems with a focus on microservices architecture. Implemented rigorous testing using Jest, Mocha, and Selenium, and automated testing processes with CI/CD pipelines. Improved code quality in projects like a ride-sharing app through unit, integration, and end-to-end testing.",
+        "Designed scalable, modular systems with a focus on microservices architecture. Implemented rigorous testing using JUnit, and Selenium, and automated testing processes with CI/CD pipelines. Improved code quality through unit, integration, and end-to-end testing.",
     },
     {
       icon: <FaPaintBrush className="w-12 h-12 text-blue-400" />,
@@ -336,6 +337,23 @@ export default function Portfolio() {
           <p className="text-xl md:text-2xl text-gray-300 max-w-2xl">
             <AnimatedText texts={animatedTexts} className="text-blue-400" />
           </p>
+          <div className="mt-4">
+            <Button
+              variant="outline"
+              className="bg-gray-700 hover:bg-blue-500 text-white hover:text-white transition-colors"
+            >
+              <a
+                href="/ResumeNishchintDhawan.pdf"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                <Download className="mr-2" />
+                Download Resume
+              </a>
+            </Button>
+          </div>
           <div className="flex space-x-4">
             <Button
               variant="outline"
